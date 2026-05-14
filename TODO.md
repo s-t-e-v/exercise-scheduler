@@ -1,7 +1,7 @@
 # TODO
 
 - [x] Initialize Next.js (TypeScript, App Router) with Tailwind CSS
-- [ ] Add Prisma with SQLite configuration
+- [x] Add Prisma with SQLite configuration
 - [ ] Define Prisma schema models:
   - [ ] Semester
   - [ ] Lecture
