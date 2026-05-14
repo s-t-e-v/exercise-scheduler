@@ -1,22 +1,33 @@
 # Scope
 
-## v0 includes:
+## V0 Goals
+
+The first version focuses on validating the core repetition workflow.
+
+Included features:
 - exercise scheduling
 - basic spaced repetition algorithm
 - self-evaluation
-- review queue
+- daily review queue
+- local database
+- localhost usage
 
-## v0 excludes:
-- AI correction
-- manual database exercises entry
+## Excluded From V0
+
+The following features are intentionally excluded to keep the project simple:
+
 - authentication
+- cloud sync
 - CI/CD
 - OCR
+- AI correction
 - AI hints
-- page scaning
 - adaptive curriculum
 - exercise statements
 - statistics
 - streaks
-- Gamefication
-- Notifications
+- gamification
+- notifications
+- page scanning
+
+The user solves exercises directly from their textbook outside the app.
