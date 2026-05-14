@@ -1,0 +1,23 @@
+# TODO
+
+- [x] Initialize Next.js (TypeScript, App Router) with Tailwind CSS
+- [ ] Add Prisma with SQLite configuration
+- [ ] Define Prisma schema models:
+  - [ ] Semester
+  - [ ] Lecture
+  - [ ] Exercise (including subsectionName/subsectionOrder + scheduling fields)
+  - [ ] ReviewLog
+  - [ ] Add uniqueness constraints
+- [ ] Create Prisma seed script using root CSV files
+- [ ] Auto-generate exercises from lecture exercise counts in seed flow
+- [ ] Add minimal server-side utilities:
+  - [ ] due queue query (`nextReviewAt <= now`)
+  - [ ] record review + reschedule update
+- [ ] Run Prisma validate/migrate/generate/seed
+- [ ] Run app build/start checks
+- [ ] Thorough testing:
+  - [ ] Relationship integrity checks
+  - [ ] Uniqueness and nullability checks
+  - [ ] Due queue behavior checks
+  - [ ] ReviewLog behavior and scheduling edge cases
+- [ ] Update TODO.md as each step completes
