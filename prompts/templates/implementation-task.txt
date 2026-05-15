@@ -1,0 +1,14 @@
+Read:
+- /docs/vision.md
+- /docs/scope.md
+- /docs/database.md
+- /docs/commit-policy.md
+
+Task:
+<task>
+
+Constraints:
+- KISS
+- discuss before implementation
+- justify tradeoffs
+- ask before commit

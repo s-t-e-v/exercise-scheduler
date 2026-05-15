@@ -28,12 +28,12 @@
 
 ### AI Workflow Infrastructure
 
-* [ ] Create:
+* [x] Create:
 
-  * [ ] `prompts/`
-  * [ ] `prompts/templates/`
-  * [ ] `prompts/scratch/`
-* [ ] Add `prompts/scratch/` to `.gitignore`
+  * [x] `prompts/`
+  * [x] `prompts/templates/`
+  * [x] `prompts/scratch/`
+* [x] Add `prompts/scratch/` to `.gitignore`
 
 ### Local Data Infrastructure
 
