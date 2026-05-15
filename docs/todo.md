@@ -37,8 +37,8 @@
 
 ### Local Data Infrastructure
 
-* [ ] Create `db-seed/`
-* [ ] Add `db-seed/` to `.gitignore`
+* [x] Create `db-seed/`
+* [x] Add `db-seed/` to `.gitignore`
 
 ---
 
