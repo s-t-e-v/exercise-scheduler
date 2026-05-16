@@ -2,6 +2,33 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Local PostgreSQL setup
+
+Copy the example env file and then adjust values if needed:
+
+```bash
+cp .env.example .env
+```
+
+`app/.env` should contain:
+
+```bash
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/exercise_scheduler?schema=public"
+```
+
+Then validate Prisma can read the datasource and generate the client:
+
+```bash
+npm run prisma:validate
+npm run prisma:generate
+```
+
+If this is your first time initializing the database schema, run:
+
+```bash
+npm run prisma:migrate -- --name init
+```
+
 First, run the development server:
 
 ```bash

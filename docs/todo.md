@@ -44,10 +44,10 @@
 
 ## Milestone 4 — Database Architecture
 
-* [ ] Switch Prisma from SQLite to PostgreSQL
-* [ ] Connect local PostgreSQL
-* [ ] Implement Prisma schema
-* [ ] Seed Arabic curriculum data
+* [x] Switch Prisma from SQLite to PostgreSQL
+* [x] Connect local PostgreSQL
+* [x] Implement Prisma schema
+* [x] Seed Arabic curriculum data
 
 ---
 

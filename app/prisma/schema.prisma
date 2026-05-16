@@ -3,5 +3,96 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
+}
+
+enum EvaluationGrade {
+  AGAIN
+  HARD
+  GOOD
+  EASY
+}
+
+model Semester {
+  id        Int       @id @default(autoincrement())
+  code      String    @unique
+  order     Int
+  lectures  Lecture[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([order])
+}
+
+model Lecture {
+  id                Int          @id @default(autoincrement())
+  semesterId        Int
+  lectureNumber     Int
+  name              String
+  numberOfExercises Int
+  semester          Semester     @relation(fields: [semesterId], references: [id], onDelete: Cascade)
+  subsections       Subsection[]
+  exercises         Exercise[]
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  @@unique([semesterId, lectureNumber])
+  @@index([semesterId])
+}
+
+model Subsection {
+  id              Int        @id @default(autoincrement())
+  lectureId       Int
+  name            String
+  subsectionOrder Int
+  lecture         Lecture    @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+  exercises       Exercise[]
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@unique([lectureId, subsectionOrder])
+  @@index([lectureId])
+}
+
+model Exercise {
+  id             Int               @id @default(autoincrement())
+  lectureId      Int
+  subsectionId   Int?
+  exerciseNumber Int
+  lecture        Lecture           @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+  subsection     Subsection?       @relation(fields: [subsectionId], references: [id], onDelete: SetNull)
+  schedule       ExerciseSchedule?
+  reviewLogs     ReviewLog[]
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@unique([lectureId, exerciseNumber])
+  @@index([lectureId])
+  @@index([subsectionId])
+}
+
+model ExerciseSchedule {
+  id             Int              @id @default(autoincrement())
+  exerciseId     Int              @unique
+  lastReviewedAt DateTime?
+  lastGrade      EvaluationGrade?
+  nextReviewAt   DateTime
+  intervalDays   Int              @default(1)
+  repetition     Int              @default(0)
+  easeFactor     Float            @default(2.5)
+  exercise       Exercise         @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@index([nextReviewAt])
+}
+
+model ReviewLog {
+  id         Int             @id @default(autoincrement())
+  exerciseId Int
+  reviewedAt DateTime        @default(now())
+  grade      EvaluationGrade
+  exercise   Exercise        @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@index([exerciseId, reviewedAt])
 }

@@ -4,6 +4,7 @@ Read:
 - /docs/database.md
 - /docs/commit-policy.md
 - /docs/tech-stack.md
+- /docs/todo.md
 
 Task:
 <task>
