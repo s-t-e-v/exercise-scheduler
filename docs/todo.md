@@ -48,6 +48,7 @@
 * [x] Connect local PostgreSQL
 * [x] Implement Prisma schema
 * [x] Seed Arabic curriculum data
+* [ ] Audit changes and correct/refine if necessary
 
 ---
 

@@ -6,8 +6,7 @@ Read:
 - /docs/tech-stack.md
 - /docs/todo.md
 
-Task:
-<task>
+Task: <task>
 
 Constraints:
 - KISS
