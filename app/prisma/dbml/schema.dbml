@@ -1,0 +1,102 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Semester {
+  id Int [pk, increment]
+  code String [unique, not null]
+  order Int [unique, not null]
+  lectures Lecture [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Lecture {
+  id Int [pk, increment]
+  semesterId Int [not null]
+  lectureNumber Int [not null]
+  name String [not null]
+  numberOfExercises Int [not null]
+  semester Semester [not null]
+  subsections Subsection [not null]
+  exercises Exercise [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (semesterId, lectureNumber) [unique]
+  }
+}
+
+Table Subsection {
+  id Int [pk, increment]
+  lectureId Int [not null]
+  name String [not null]
+  subsectionOrder Int [not null]
+  lecture Lecture [not null]
+  exercises Exercise [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (lectureId, subsectionOrder) [unique]
+  }
+}
+
+Table Exercise {
+  id Int [pk, increment]
+  lectureId Int [not null]
+  subsectionId Int
+  exerciseNumber Int [not null]
+  lecture Lecture [not null]
+  subsection Subsection
+  schedule ExerciseSchedule
+  reviewLogs ReviewLog [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (lectureId, exerciseNumber) [unique]
+  }
+}
+
+Table ExerciseSchedule {
+  id Int [pk, increment]
+  exerciseId Int [unique, not null]
+  lastReviewedAt DateTime
+  lastGrade EvaluationGrade
+  nextReviewAt DateTime [not null]
+  intervalDays Int [not null, default: 1]
+  repetition Int [not null, default: 0]
+  easeFactor Float [not null, default: 2.5]
+  exercise Exercise [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table ReviewLog {
+  id Int [pk, increment]
+  exerciseId Int [not null]
+  reviewedAt DateTime [default: `now()`, not null]
+  grade EvaluationGrade [not null]
+  exercise Exercise [not null]
+}
+
+Enum EvaluationGrade {
+  AGAIN
+  HARD
+  GOOD
+  EASY
+}
+
+Ref: Lecture.semesterId > Semester.id [delete: Cascade]
+
+Ref: Subsection.lectureId > Lecture.id [delete: Cascade]
+
+Ref: Exercise.lectureId > Lecture.id [delete: Cascade]
+
+Ref: Exercise.subsectionId > Subsection.id [delete: Set Null]
+
+Ref: ExerciseSchedule.exerciseId - Exercise.id [delete: Cascade]
+
+Ref: ReviewLog.exerciseId > Exercise.id [delete: Cascade]
